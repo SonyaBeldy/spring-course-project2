@@ -11,8 +11,8 @@
   <properties>
     <!--    <spring.version>6.0.6</spring.version>-->
     <!--    <spring.version>5.2.1.RELEASE</spring.version>-->
-<!--    <spring.version>5.3.5</spring.version>-->
-    <spring.version>6.0.8</spring.version>
+    <spring.version>5.3.5</spring.version>
+<!--    <spring.version>6.0.8</spring.version>-->
 
     <maven.compiler.source>14</maven.compiler.source>
     <maven.compiler.target>14</maven.compiler.target>
@@ -92,8 +92,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>19</source>
-          <target>19</target>
+          <source>14</source>
+          <target>14</target>
         </configuration>
       </plugin>
     </plugins>

@@ -1,9 +1,9 @@
-package ru.sonyabeldy.springcourse.controllers;
+package ru.sonyabeldy.springcourse.models;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Book")
+@Table(name = "book")
 public class Book {
 
     @Id
@@ -80,7 +80,7 @@ public class Book {
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 ", yearOfProduction=" + yearOfProduction +
-                ", owner=" + owner +
+//                ", owner=" + owner +
                 '}';
     }
 }
