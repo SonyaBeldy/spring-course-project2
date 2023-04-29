@@ -18,18 +18,18 @@ import java.util.GregorianCalendar;
 public class Main {
 
 
-    public static void main(String[] args) {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
-
-        PeopleService peopleService = applicationContext.getBean("peopleService", PeopleService.class);
-        Person person = peopleService.findById(3);
-//        person.getBooks();
-        System.out.println(person);
-
-//        Person person = new Person();
+//    public static void main(String[] args) {
+//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+//
+//        PeopleService peopleService = applicationContext.getBean("peopleService", PeopleService.class);
+//        Person person = peopleService.findById(3);
+////        person.getBooks();
+//        System.out.println(person);
+//
+//        person = new Person();
 //        person.setName("Lala");
 //
 //        person.setDateOfBirth(new GregorianCalendar(1999, Calendar.JULY, 21).getTime());
 //        peopleService.save(person);
-    }
+//    }
 }
