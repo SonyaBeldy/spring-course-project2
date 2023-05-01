@@ -8,6 +8,8 @@ import ru.sonyabeldy.springcourse.models.Person;
 import ru.sonyabeldy.springcourse.repositories.BooksRepository;
 import ru.sonyabeldy.springcourse.repositories.PeopleRepository;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 public class BooksService {
@@ -17,6 +19,10 @@ public class BooksService {
     @Autowired
     public BooksService(BooksRepository booksRepository) {
         this.booksRepository = booksRepository;
+    }
+
+    public List<Book> findAll() {
+        return booksRepository.findAll();
     }
     public Book findById(int id) {
         return booksRepository.findById(id).orElse(null);
