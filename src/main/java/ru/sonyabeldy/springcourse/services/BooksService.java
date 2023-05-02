@@ -26,6 +26,7 @@ public class BooksService {
         return booksRepository.findAll();
     }
 
+    @Transactional
     public void removeOwner(int bookId) {
         Optional<Book> book = booksRepository.findById(bookId);
         if (book.isPresent()) {
@@ -38,6 +39,7 @@ public class BooksService {
         return booksRepository.findById(id).orElse(null);
     }
 
+    @Transactional
     public void setOwner(int bookId, Person person) {
         Optional<Book> book = booksRepository.findById(bookId);
         if (book.isPresent()) {
