@@ -10,5 +10,7 @@
     <a th:href="@{/people/{id}(id=${person.getId()})}"
        th:text="${person.getName() + ', ' + person.getDateOfBirth().toString()}">user</a>
 </div>
+<hr/>
+<a th:href="@{/people/new}">Add person</a>
 </body>
 </html>

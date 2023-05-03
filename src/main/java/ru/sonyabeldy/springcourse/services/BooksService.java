@@ -47,4 +47,8 @@ public class BooksService {
             booksRepository.save(book.get());
         }
     }
+
+    public List<Book> findByOwner(Person person) {
+        return booksRepository.findByOwner(person);
+    }
 }
