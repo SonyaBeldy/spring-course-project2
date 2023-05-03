@@ -2,9 +2,8 @@ package ru.sonyabeldy.springcourse.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import ru.sonyabeldy.springcourse.models.Person;
 import ru.sonyabeldy.springcourse.services.BooksService;
 import ru.sonyabeldy.springcourse.services.PeopleService;
 
@@ -30,5 +29,17 @@ public class PeopleController {
         model.addAttribute("person", peopleService.findById(id));
         model.addAttribute("books", booksService.findByOwner(peopleService.findById(id)));
         return "people/show";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable int id, Model model) {
+        model.addAttribute("person", peopleService.findById(id));
+        return "people/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@PathVariable int id, @ModelAttribute("person") Person person) {
+        peopleService.save(person);
+        return "redirect:/people/{id}";
     }
 }
