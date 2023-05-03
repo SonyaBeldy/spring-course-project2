@@ -9,5 +9,7 @@
     <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfProduction()}">
     </a>
 </div>
+<hr/>
+<a th:href="@{/books/new}">Add book</a>
 </body>
 </html>

@@ -3,6 +3,7 @@ package ru.sonyabeldy.springcourse.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.sonyabeldy.springcourse.models.Book;
 import ru.sonyabeldy.springcourse.models.Person;
 import ru.sonyabeldy.springcourse.services.BooksService;
 import ru.sonyabeldy.springcourse.services.PeopleService;
@@ -45,6 +46,17 @@ public class BookController {
     public String removeOwner(@PathVariable("id") int id) {
         booksService.removeOwner(id);
         return "redirect:/books/{id}";
+    }
+
+    @GetMapping("/new")
+    public String newBook(@ModelAttribute("book") Book book) {
+        return "books/new";
+    }
+
+    @PostMapping()
+    public String create(@ModelAttribute("book") Book book) {
+        booksService.save(book);
+        return "redirect:/books";
     }
 
 }

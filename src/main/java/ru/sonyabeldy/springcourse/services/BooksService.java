@@ -51,4 +51,9 @@ public class BooksService {
     public List<Book> findByOwner(Person person) {
         return booksRepository.findByOwner(person);
     }
+
+    @Transactional
+    public void save(Book book) {
+        booksRepository.save(book);
+    }
 }
