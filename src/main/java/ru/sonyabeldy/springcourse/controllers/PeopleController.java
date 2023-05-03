@@ -37,9 +37,20 @@ public class PeopleController {
         return "people/edit";
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/update")
     public String update(@PathVariable int id, @ModelAttribute("person") Person person) {
         peopleService.save(person);
         return "redirect:/people/{id}";
+    }
+
+
+    @GetMapping("/new")
+    public String newPerson(@ModelAttribute("person") Person person) {
+        return "people/new";
+    }
+    @PostMapping()
+    public String create(@ModelAttribute("person") Person person) {
+        peopleService.save(person);
+        return "redirect:/people";
     }
 }
