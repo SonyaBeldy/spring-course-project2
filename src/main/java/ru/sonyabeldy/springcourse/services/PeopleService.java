@@ -30,4 +30,9 @@ public class PeopleService {
     public void save(Person person) {
         peopleRepository.save(person);
     }
+
+    @Transactional
+    public void delete(Person person) {
+        peopleRepository.delete(person);
+    }
 }

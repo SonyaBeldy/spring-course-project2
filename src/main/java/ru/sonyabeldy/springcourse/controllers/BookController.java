@@ -59,4 +59,11 @@ public class BookController {
         return "redirect:/books";
     }
 
+//    @PatchMapping("/{id}")
+//    public String edit(@PathVariable("id") int id) {
+//
+//        return null;
+//    }
+
+
 }

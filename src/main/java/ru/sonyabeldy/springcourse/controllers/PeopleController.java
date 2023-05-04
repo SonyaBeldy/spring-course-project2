@@ -53,4 +53,11 @@ public class PeopleController {
         peopleService.save(person);
         return "redirect:/people";
     }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        peopleService.delete(peopleService.findById(id));
+        return "redirect:/people";
+    }
+
 }
