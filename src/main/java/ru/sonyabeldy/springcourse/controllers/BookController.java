@@ -8,6 +8,7 @@ import ru.sonyabeldy.springcourse.models.Person;
 import ru.sonyabeldy.springcourse.services.BooksService;
 import ru.sonyabeldy.springcourse.services.PeopleService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,11 +23,26 @@ public class BookController {
         this.peopleService = peopleService;
     }
 
-    @GetMapping
-    public String index(Model model) {
-        model.addAttribute("books", booksService.findAll());
+//    @GetMapping
+//    public String index(Model model) {
+//        model.addAttribute("books", booksService.findAll());
+//        return "books/index";
+//    }
+
+    @GetMapping()
+    public String index(Model model, @RequestParam(value = "page", required = false, defaultValue = "-1") int page, @RequestParam(value = "books_per_page", required = false, defaultValue = "-1") int booksPerPage) {
+//        List<Book> bookList = page < 0 || booksPerPage < 0 ? booksService.findAll() : booksService.findAll(page, booksPerPage);
+        List<Book> bookList;
+        if(page < 0 || booksPerPage < 0) {
+            bookList = booksService.findAll();
+        } else {
+            bookList = booksService.findAll(page, booksPerPage);
+        }
+        model.addAttribute("books", bookList);
+        //page=1&books_per_page=3
         return "books/index";
     }
+
     @GetMapping("/{id}")
     public String show(@PathVariable int id, @ModelAttribute("person") Person person, Model model) {
         model.addAttribute("book", booksService.findById(id));
