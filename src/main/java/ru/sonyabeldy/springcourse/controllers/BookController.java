@@ -59,11 +59,16 @@ public class BookController {
         return "redirect:/books";
     }
 
-//    @PatchMapping("/{id}")
-//    public String edit(@PathVariable("id") int id) {
-//
-//        return null;
-//    }
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") int id, Model model) {
+        model.addAttribute("book", booksService.findById(id));
+        return "books/edit";
+    }
+    @PatchMapping("/{id}/update")
+    public String update(@ModelAttribute("book") Book book) {
+        booksService.save(book);
+        return "redirect:/books/{id}";
+    }
 
 
 }
