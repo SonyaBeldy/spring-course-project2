@@ -9,6 +9,7 @@ import ru.sonyabeldy.springcourse.services.BooksService;
 import ru.sonyabeldy.springcourse.services.PeopleService;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -91,6 +92,27 @@ public class BookController {
     public String delete(@PathVariable("id") int id) {
         booksService.delete(id);
         return "redirect:/books";
+    }
+
+//    @GetMapping("/search/s")
+//    public String search(@PathVariable("word") String word, @ModelAttribute("searchRequest") String searchRequest) {
+//        List<Book> bookList = booksService.searchByName(searchRequest);
+//
+//        if(!bookList.isEmpty()) {
+//            System.out.println(bookList.get(0));
+//        }
+//        return "books/search";
+//    }
+
+    @GetMapping("/search")
+    public String searchView(@RequestParam(value = "q", required = false) String q, Model model) {
+        List<Book> bookList = null;
+        if (!Objects.equals(q, "")) {
+            bookList = booksService.searchByName(q);
+        }
+        model.addAttribute("books", bookList);
+
+        return "books/search";
     }
 
 

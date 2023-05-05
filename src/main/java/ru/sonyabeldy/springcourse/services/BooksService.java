@@ -75,4 +75,9 @@ public class BooksService {
     public void delete(int id) {
         booksRepository.deleteById(id);
     }
+
+    public List<Book> searchByName(String name) {
+        return booksRepository.search(name);
+//        return booksRepository. findByName(name);
+    }
 }
