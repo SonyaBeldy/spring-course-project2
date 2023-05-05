@@ -2,6 +2,7 @@ package ru.sonyabeldy.springcourse.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sonyabeldy.springcourse.models.Book;
@@ -24,13 +25,20 @@ public class BooksService {
         this.booksRepository = booksRepository;
     }
 
-    public List<Book> findAll() {
+    public List<Book> findAll(boolean sortByYear) {
+        if(sortByYear) {
+            return booksRepository.findAll(Sort.by("yearOfProduction"));
+        }
         return booksRepository.findAll();
     }
-
-    public List<Book> findAll(int page, int itemsPerPage) {
-        return booksRepository.findAll(PageRequest.of(page, itemsPerPage)).getContent();
+    public List<Book> findAll(int page, int itemsPerPage, boolean sortByYear) {
+        if(sortByYear) {
+            return  booksRepository.findAll(PageRequest.of(page, itemsPerPage, Sort.by("yearOfProduction"))).getContent();
+        } else {
+            return booksRepository.findAll(PageRequest.of(page, itemsPerPage)).getContent();
+        }
     }
+
 
     @Transactional
     public void removeOwner(int bookId) {
