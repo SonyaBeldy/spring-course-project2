@@ -2,6 +2,7 @@ package ru.sonyabeldy.springcourse.models;
 
 import javax.persistence.*;
 import javax.swing.text.html.Option;
+import java.sql.Timestamp;
 import java.util.Optional;
 
 @Entity
@@ -22,13 +23,16 @@ public class Book {
     @Column(name = "year_of_publication")
     private int yearOfProduction;
 
+    @Column(name = "delay")
+    private Timestamp delay;
+
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
     public Book() {
     }
 
-    public Book(int id, String name, String author, int yearOfProduction) {
+    public Book(int id, String name, String author, int yearOfProduction, Timestamp data) {
         this.id = id;
         this.name = name;
         this.author = author;

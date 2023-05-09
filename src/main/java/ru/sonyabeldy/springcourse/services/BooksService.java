@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sonyabeldy.springcourse.models.Book;
 import ru.sonyabeldy.springcourse.models.Person;
+import ru.sonyabeldy.springcourse.repositories.BookDelayRepository;
 import ru.sonyabeldy.springcourse.repositories.BooksRepository;
-import ru.sonyabeldy.springcourse.repositories.PeopleRepository;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,10 +18,13 @@ import java.util.Optional;
 public class BooksService {
 
     private final BooksRepository booksRepository;
+    private final BookDelayRepository bookDelayRepository;
+
 
     @Autowired
-    public BooksService(BooksRepository booksRepository) {
+    public BooksService(BooksRepository booksRepository, BookDelayRepository bookDelayRepository) {
         this.booksRepository = booksRepository;
+        this.bookDelayRepository = bookDelayRepository;
     }
 
     public List<Book> findAll(boolean sortByYear) {
